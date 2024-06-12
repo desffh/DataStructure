@@ -1,9 +1,8 @@
 ﻿#include <iostream>
 using namespace std;
 
-
 template <typename T>
-class SingleLinkedList
+class DoubleLinkedList
 {
 private:
 	int size;
@@ -11,154 +10,130 @@ private:
 	struct Node
 	{
 		T data;
-		Node* next;
+		Node * next;
+		Node * previous;
 	};
-
-	Node* head;
+	Node * head;
+	Node * tail;
 
 public:
-	SingleLinkedList()
+	DoubleLinkedList()
 	{
 		size = 0;
 		head = nullptr;
-
-	}
-	void PopFront()
-	{
-		if (head != nullptr)
-		{
-			Node * deleteNode = head;
-			head = deleteNode->next;
-			delete deleteNode;
-			size--;
-
-		}
-		else
-		{
-			cout << "Linked List is Empty" << endl;
-		}
-		
-
-	}
-
-	void PushFront(T data)
-	{
-		if (head == nullptr)
-		{
-			head = new Node; //동적할당
-			head->data = data; //매개변수 넣어주기
-			head->next = nullptr;
-		}
-		else
-		{
-			Node* newNode = new Node;
-			newNode->data = data;
-			newNode->next = head;
-
-			head = newNode;
-		}
-
-		size++;
+		tail = nullptr;
 	}
 
 	void PushBack(T data)
 	{
-		if (head == nullptr)
+		Node * newNode = new Node; // 동적할당
+
+		newNode->data = data;
+		newNode->next = nullptr; // 초기화
+		newNode->previous = nullptr; // 초기화
+
+		if (tail == nullptr) // 하나도 없을때
 		{
-			head = new Node;
-			head->data = data;
-			head->next = nullptr;
+			tail = newNode;
+			head = tail;
 		}
 		else
 		{
-			Node * currentNode = head;
-			
-			
+			tail->next = newNode;
+			newNode->previous = tail;
 
-			while (currentNode->next != nullptr)
-			{
-				currentNode = currentNode->next;
-			}
-			Node * newNode = new Node;
-			
-			currentNode->next = newNode;
-		
-			newNode->data = data;
-			newNode->next = nullptr;
+			tail = newNode;
 		}
-
 		size++;
 	}
 
+	void PushFront(T data)
+	{
+		Node* newNode = new Node;
+
+		newNode->data = data;
+		newNode->next = nullptr;
+		newNode->previous = nullptr;
+
+		if (head == nullptr)
+		{
+			head = newNode;
+			tail = newNode;
+			//tail = head; // 같은 곳 참조(이것도 사용가능)
+		}
+		else
+		{	
+			//== head->previous = newNode;
+			tail->previous = newNode;
+			newNode->next = head;
+
+			head = newNode;
+		}
+		size++;
+	}
+	
 	void PopBack()
 	{
-		if (head == nullptr)
+		
+		if (tail == nullptr) // 아무 데이터도 없다
 		{
 			cout << "Linked List is Empty" << endl;
 		}
-
 		else
-		{
-			Node * deleteNode = head;
-			Node * previousNode = nullptr;
-			
-			if (size == 1)
+		{	
+			Node * deleteNode = tail;
+
+			if (head == tail)
 			{
-				head = deleteNode->next;
+				head = nullptr;
+				tail = nullptr;
 
 				delete deleteNode;
 			}
 			else
 			{
-				while (deleteNode->next != nullptr)
-				{
-					previousNode = deleteNode;
-					deleteNode = deleteNode->next;
-				}
+				tail->previous->next = nullptr;
+				tail = tail->previous;
 
+				delete deleteNode;
 			}
-			previousNode->next = deleteNode->next;
-
-			delete deleteNode;	
+			size--;
 		}
-		size--;
+	}
+
+	int & Size()
+	{
+		return size;
 	}
 
 	void Show()
 	{
 		Node* currentNode = head;
 
-
 		while (currentNode != nullptr)
 		{
 			cout << currentNode->data << endl;
 			currentNode = currentNode->next;
+
 		}
 	}
 
-
 };
-
 
 int main()
 {
-	SingleLinkedList<int> singlelinkedlist;
+	DoubleLinkedList<int> doubleLinkedList;
 
-	//singlelinkedlist.PushFront(30);
-	//singlelinkedlist.PushFront(20);
-	//singlelinkedlist.PushFront(10);
+	doubleLinkedList.PushBack(10);
+	doubleLinkedList.PushBack(20);
+	doubleLinkedList.PushBack(30);
+	//doubleLinkedList.PopBack();
+	doubleLinkedList.PushFront(50);
 
-	//singlelinkedlist.PopFront();
-	//singlelinkedlist.PopFront();
+	cout << "Size: " << doubleLinkedList.Size() << endl;
 
-	singlelinkedlist.PushBack(10);
-	singlelinkedlist.PushBack(20);
-	singlelinkedlist.PushBack(30);
+	doubleLinkedList.Show();
 
-	singlelinkedlist.PopBack();
-
-
-	singlelinkedlist.Show();
 
 	return 0;
 
