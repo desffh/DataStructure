@@ -7,16 +7,23 @@ class DoubleLinkedList
 private:
 	int size;
 
-	struct Node
-	{
-		T data;
-		Node * next;
-		Node * previous;
-	};
+	struct Node; // 프로토 타입
+	//{
+	//	T data;
+	//	Node * next;
+	//	Node * previous;
+	//};
 	Node * head;
 	Node * tail;
 
 public:
+	struct Node
+	{
+		T data;
+		Node* next;
+		Node* previous;
+	};
+
 	DoubleLinkedList()
 	{
 		size = 0;
@@ -71,7 +78,33 @@ public:
 		}
 		size++;
 	}
-	
+
+	void PopFront()
+	{
+		if (head == nullptr) // 하나도 없는 경우
+		{
+			cout << "Linked List is Empty" << endl;
+		}
+		else
+		{
+			Node * deleteNode = head;
+
+			if (head == tail) // 하나만 있는 경우
+			{
+				head = nullptr;
+				tail = nullptr;
+			}
+			else // 여러개 있는 경우
+			{
+				deleteNode->next->previous = nullptr;
+				head = head->next;
+			}
+			delete deleteNode;
+
+			size--;
+		}
+	}
+
 	void PopBack()
 	{
 		
@@ -118,6 +151,58 @@ public:
 		}
 	}
 
+
+	Node* Begin()
+	{
+		return head;
+	}
+
+	void InSert(Node * position, T data)
+	{
+
+		if (head == nullptr)
+		{
+			PushBack(data);
+		}
+		else
+		{
+			Node* previousNode = position;
+			Node* nextNode = position->next;
+			Node* newNode = head->next;
+
+			if (nextNode == nullptr)
+			{
+				PushBack(data);
+			}
+			else if (previousNode->previous == nullptr)
+			{
+				PushFront(data);
+			}
+			else
+			{
+				Node* newNode = new Node;
+				newNode->data = data;
+
+				previousNode->next = newNode;
+				nextNode->previous = newNode;
+				
+				newNode->next = nullptr;
+				newNode->previous = previousNode;
+				newNode->next = nextNode;
+
+				size++;
+			}
+		}
+
+	}
+	~DoubleLinkedList()
+	{
+		while (head != nullptr)
+		{
+			PopFront();
+		}
+	}
+
 };
 
 int main()
@@ -128,9 +213,13 @@ int main()
 	doubleLinkedList.PushBack(20);
 	doubleLinkedList.PushBack(30);
 	//doubleLinkedList.PopBack();
-	doubleLinkedList.PushFront(50);
+	//doubleLinkedList.PushFront(50);
+	doubleLinkedList.PopFront(); // 젤 앞에꺼 사라짐
 
-	cout << "Size: " << doubleLinkedList.Size() << endl;
+	doubleLinkedList.InSert(doubleLinkedList.Begin()->next, 99); // 젤 앞에꺼 사라짐
+
+
+	cout << "Size: " << doubleLinkedList.Begin()->next << endl;
 
 	doubleLinkedList.Show();
 
