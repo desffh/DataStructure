@@ -1,229 +1,164 @@
 ﻿#include <iostream>
+
 using namespace std;
 
 template <typename T>
-class DoubleLinkedList
+class CircleLinkedList
 {
 private:
-	int size;
+    int size;
 
-	struct Node; // 프로토 타입
-	//{
-	//	T data;
-	//	Node * next;
-	//	Node * previous;
-	//};
-	Node * head;
-	Node * tail;
+    struct Node
+    {
+        T data;
+        Node* next;
+    };
+
+    Node* head;
 
 public:
-	struct Node
-	{
-		T data;
-		Node* next;
-		Node* previous;
-	};
+    CircleLinkedList()
+    {
+        size = 0;
+        head = nullptr;
+    }
 
-	DoubleLinkedList()
-	{
-		size = 0;
-		head = nullptr;
-		tail = nullptr;
-	}
+    void PushBack(T data)
+    {
+        Node* newNode = new Node;
 
-	void PushBack(T data)
-	{
-		Node * newNode = new Node; // 동적할당
+        newNode->data = data;
 
-		newNode->data = data;
-		newNode->next = nullptr; // 초기화
-		newNode->previous = nullptr; // 초기화
+        if (head == nullptr)
+        {
+            head = newNode;
 
-		if (tail == nullptr) // 하나도 없을때
-		{
-			tail = newNode;
-			head = tail;
-		}
-		else
-		{
-			tail->next = newNode;
-			newNode->previous = tail;
+            newNode->next = head;
+        }
+        else
+        {
+            newNode->next = head->next;
 
-			tail = newNode;
-		}
-		size++;
-	}
+            head->next = newNode;
 
-	void PushFront(T data)
-	{
-		Node* newNode = new Node;
+            head = newNode;
+        }
 
-		newNode->data = data;
-		newNode->next = nullptr;
-		newNode->previous = nullptr;
+        size++;
+    }
+    void PushFront(T data)
+    {
+        Node * newNode = new Node;
+        newNode->data = data;
 
-		if (head == nullptr)
-		{
-			head = newNode;
-			tail = newNode;
-			//tail = head; // 같은 곳 참조(이것도 사용가능)
-		}
-		else
-		{	
-			//== head->previous = newNode;
-			tail->previous = newNode;
-			newNode->next = head;
+        if (head == nullptr)
+        {
+            head = newNode;
 
-			head = newNode;
-		}
-		size++;
-	}
+            newNode->next = head;
 
-	void PopFront()
-	{
-		if (head == nullptr) // 하나도 없는 경우
-		{
-			cout << "Linked List is Empty" << endl;
-		}
-		else
-		{
-			Node * deleteNode = head;
+        }
+        else
+        {
+            newNode->next = head->next;
 
-			if (head == tail) // 하나만 있는 경우
-			{
-				head = nullptr;
-				tail = nullptr;
-			}
-			else // 여러개 있는 경우
-			{
-				deleteNode->next->previous = nullptr;
-				head = head->next;
-			}
-			delete deleteNode;
-
-			size--;
-		}
-	}
-
-	void PopBack()
-	{
-		
-		if (tail == nullptr) // 아무 데이터도 없다
-		{
-			cout << "Linked List is Empty" << endl;
-		}
-		else
-		{	
-			Node * deleteNode = tail;
-
-			if (head == tail)
-			{
-				head = nullptr;
-				tail = nullptr;
-
-				delete deleteNode;
-			}
-			else
-			{
-				tail->previous->next = nullptr;
-				tail = tail->previous;
-
-				delete deleteNode;
-			}
-			size--;
-		}
-	}
-
-	int & Size()
-	{
-		return size;
-	}
-
-	void Show()
-	{
-		Node* currentNode = head;
-
-		while (currentNode != nullptr)
-		{
-			cout << currentNode->data << endl;
-			currentNode = currentNode->next;
-
-		}
-	}
+            head->next = newNode;
 
 
-	Node* Begin()
-	{
-		return head;
-	}
+        }
+        size++;
+    }
 
-	void InSert(Node * position, T data)
-	{
+    void PopFront()
+    {
+        if (head == nullptr)
+        {
+            cout << "Linked List is Empty" << endl;
+        }
+        else 
+        {
+            Node* deleteNode = head->next;
 
-		if (head == nullptr)
-		{
-			PushBack(data);
-		}
-		else
-		{
-			Node* previousNode = position;
-			Node* nextNode = position->next;
-			Node* newNode = head->next;
+            if (head == head->next)
+            {
+                head = nullptr;
+                
+                //delete deleteNode;
+            }
+            else
+            {
+                head->next = deleteNode->next;
+            }
 
-			if (nextNode == nullptr)
-			{
-				PushBack(data);
-			}
-			else if (previousNode->previous == nullptr)
-			{
-				PushFront(data);
-			}
-			else
-			{
-				Node* newNode = new Node;
-				newNode->data = data;
+            delete deleteNode;
 
-				previousNode->next = newNode;
-				nextNode->previous = newNode;
-				
-				newNode->next = nullptr;
-				newNode->previous = previousNode;
-				newNode->next = nextNode;
+            size--;
+        }
+        
 
-				size++;
-			}
-		}
+    }
 
-	}
-	~DoubleLinkedList()
-	{
-		while (head != nullptr)
-		{
-			PopFront();
-		}
-	}
+    void PopBack()
+    {
+        if (head == nullptr)
+        {
+            cout << "Linked List is Empty" << endl;
+        }
+        else
+        {
+            Node* currentNode = head;
+            Node* deleteNode = head;
 
+            if (head == head->next)
+            {
+                head = nullptr;
+            }
+            else
+            {
+                for (int i = 0; i < size - 1; i++)
+                {
+                    currentNode = currentNode->next;
+                }
+                currentNode->next = head->next;
+
+                head = currentNode;
+            }
+
+            delete deleteNode;
+
+            size--;
+        }
+    }
+
+    void Show()
+    {
+        if (head != nullptr)               
+        {
+            Node* currentNode = head->next;
+
+            for (int i = 0; i < size; i++)
+            {
+                cout << currentNode->data << endl;
+                currentNode = currentNode->next;
+            }
+        }
+    }
 };
 
 int main()
 {
-	DoubleLinkedList<int> doubleLinkedList;
+    CircleLinkedList<int> circleLinkedList;
 
-	doubleLinkedList.PushBack(10);
-	doubleLinkedList.PushBack(20);
-	doubleLinkedList.PushBack(30);
-	//doubleLinkedList.PopBack();
-	//doubleLinkedList.PushFront(50);
-	doubleLinkedList.PopFront(); // 젤 앞에꺼 사라짐
-
-	doubleLinkedList.InSert(doubleLinkedList.Begin()->next, 99); // 젤 앞에꺼 사라짐
+    circleLinkedList.PushBack(10);
+    circleLinkedList.PushBack(20);
+    circleLinkedList.PushFront(30);
+    circleLinkedList.PopFront();
+    circleLinkedList.PopBack();
 
 
-	cout << "Size: " << doubleLinkedList.Begin()->next << endl;
-
-	doubleLinkedList.Show();
 
 
-	return 0;
+    circleLinkedList.Show();
 
+    return 0;
 }
