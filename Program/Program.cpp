@@ -1,57 +1,38 @@
 ﻿#include <iostream>
-#include <stack>
+#include <queue>
 
-#define SIZE 10                           
+#define SIZE 5                         
 
 using namespace std;
 
 template <typename T>
 
-class Stack
+class CircleQueue
 {
 private:
-    int top;
-    T container[SIZE]; //자료형T
-    
+    int rear;
+    int front;
+    int size;
+
+    // 배열 선언
+    T container[SIZE];
 
 public:
-    Stack()
+    CircleQueue() // 생성자에 변수 초기화
     {
-        top = -1;
-        for (int i = 0; i < SIZE; i++)
-        {
-            container[i] = 0;
-        }
-    }
+        rear = SIZE-1;
+        front = SIZE-1;
+        size = 0;
 
-    void Push(T data)
-    {
-        if (top >= SIZE-1)
+        for (int i = 0; i < SIZE; i++) // 배열안의 데이터 null로 초기화
         {
-            cout << "스택 오버플로우" << endl;
-        }
-        else
-        {
-            container[++top] = data;
-        }
-        
-    }
-
-    void Pop()
-    {
-        if (Empty())
-        {
-            cout << "Stack is Empty" << endl;
-        }
-        else
-        {
-            top--;
+            container[i] = NULL;
         }
     }
 
     bool Empty()
     {
-        if (top <= -1)
+        if (front == rear)
         {
             return true;
         }
@@ -60,43 +41,72 @@ public:
             return false;
         }
     }
-
-
-    T& Top()
+    void Push(T data)
     {
-        return container[top];
+        if (rear > SIZE)
+        {
+            rear = SIZE % rear;
+            container[rear] = data;
+
+            size++;
+        }
+    }
+    void Pop()
+    {
+        if (front > SIZE)
+        {
+            front = SIZE % front; 
+            container[front] = NULL;
+
+            size--;
+        }
+    }
+    T& Front()
+    {
+        if (Empty()) // 값이없다
+        {
+            exit(1); // 강제종료
+        }
+        else
+        {
+            return container[front];
+        }
+    }
+    T& Back()
+    {
+        if (Empty()) // 값이없다
+        {
+            exit(1); // 강제종료
+        }
+        else
+        {
+            return container[rear - 1];
+        }
     }
 
     int& Size()
     {
-        return top;
+        return size;
     }
+
 
 };
 
-bool CheckBracket(std::string content)
-{
-    if (content.length() <= 0)
-    {
-        return false;
-    }
-}
-
-
 int main()
-{
-    Stack<int> stack;
+{   
+    CircleQueue<int> circlequeue;
 
-    stack.Push(10);
-    stack.Push(20);
-    stack.Push(30);
-    stack.Push(40);
-    stack.Push(50);
+    circlequeue.Push(10);
+    circlequeue.Push(20);
+    circlequeue.Push(30);
+    circlequeue.Push(40);
 
-    while (stack.Empty())
+    while (circlequeue.Empty() == false) //비지 않았다면 실행
     {
-        cout<< stack.Top() << endl;
+        cout << circlequeue.Front() << endl;
+
     }
+
 
     return 0;
 }
