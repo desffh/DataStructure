@@ -1,87 +1,76 @@
 ﻿#include <iostream>
-#include <queue>
-
-#define SIZE 5                         
+#include <vector>
 
 using namespace std;
 
 template <typename T>
 
-class CircleQueue
+class Vector
 {
 private:
-    int rear;
-    int front;
-    int size;
+    int size; // 사용하고 있는 크기
+    int capacity; // 미리 크기 할당
+    T* Container;
 
-    // 배열 선언
-    T container[SIZE];
 
 public:
-    CircleQueue() // 생성자에 변수 초기화
+    Vector()
     {
-        rear = SIZE-1;
-        front = SIZE-1;
         size = 0;
+        capacity = 0;
 
-        for (int i = 0; i < SIZE; i++) // 배열안의 데이터 null로 초기화
+        Container = nullptr;
+
+    }
+    void Resize(int newSize)
+    {
+        // 1. capacity에 새로운 size값을 저장합니다.
+        capacity = newSize;
+
+        // 2. 새로운 포인터 변수를 생성해서 새롭게 만들어진
+        //    메모리 공간을 가리키도록 합니다.
+        T* array = new T[capacity]; // 사이즈가 capacity인 배열 할당
+
+        // 3. 새로운 메모리 공간의 값을 초기화합니다.
+        for (int i = 0; i < newSize; i++)
         {
-            container[i] = NULL;
+            array[i] = NULL;
         }
+
+        // 4. 기존 배열에 있는 값을 복사해서 새로운 배열에 넣어줍니다.
+        for (int i = 0; i < size; i++)
+        {
+            array[i] = Container[i];
+        }
+
+        // 5. 기존 배열의 메모리를 해제합니다. 
+        if (Container != nullptr)
+        {
+            delete Container;
+        }
+
+        // 6. 기존에 배열을 가리키던 포인터 변수의 값을
+        //    새로운 배열의 시작 주소로 가리킵니다.
+        Container = array;
+
     }
 
-    bool Empty()
+    void PushBack(T data)
     {
-        if (front == rear)
+        if (capacity <= 0)
         {
-            return true;
+            Resize(1);
         }
-        else
+        else if (size >= capacity)
         {
-            return false;
+            Resize(capacity * 2);
         }
+        Container[size++] = data;
     }
-    void Push(T data)
-    {
-        if (rear > SIZE)
-        {
-            rear = SIZE % rear;
-            container[rear] = data;
 
-            size++;
-        }
-    }
-    void Pop()
+    T & operator [] (const int& index)
     {
-        if (front > SIZE)
-        {
-            front = SIZE % front; 
-            container[front] = NULL;
-
-            size--;
-        }
-    }
-    T& Front()
-    {
-        if (Empty()) // 값이없다
-        {
-            exit(1); // 강제종료
-        }
-        else
-        {
-            return container[front];
-        }
-    }
-    T& Back()
-    {
-        if (Empty()) // 값이없다
-        {
-            exit(1); // 강제종료
-        }
-        else
-        {
-            return container[rear - 1];
-        }
+        return Container[index];
     }
 
     int& Size()
@@ -89,24 +78,28 @@ public:
         return size;
     }
 
+    ~Vector()
+    {
+        if (Container != nullptr)
+        {
+            delete[] Container;
+        }
+    }
 
 };
 
 int main()
 {   
-    CircleQueue<int> circlequeue;
+    Vector<int>vector;
+    
+    vector.PushBack(10);
+    vector.PushBack(20);
+    vector.PushBack(30);
 
-    circlequeue.Push(10);
-    circlequeue.Push(20);
-    circlequeue.Push(30);
-    circlequeue.Push(40);
-
-    while (circlequeue.Empty() == false) //비지 않았다면 실행
+    for (int i = 0; i < vector.Size(); i++)
     {
-        cout << circlequeue.Front() << endl;
-
+        cout << vector[i] << endl;
     }
-
 
     return 0;
 }
