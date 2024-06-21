@@ -1,84 +1,47 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-
+﻿#include <iostream>
 
 using namespace std;
 
+#define SIZE 6
 
-class String
+// HashTable: key & value형태로 저장
+// <string, int>
+
+template<typename KEY, typename VALUE>
+class HashTable
 {
 private:
-    char * container;
-    int size;
+    struct Node
+    {
+        KEY key;
+        VALUE value;
+
+        Node* next;
+    };
+
+    struct Bucket
+    {
+        int count;
+        Node* head;
+    };
+
+    Bucket bucket[SIZE];
 
 public:
-    String()
+    HashTable()
     {
-        size = 0;
-        container = nullptr;
-    }
-    void operator = (const char * content)
-    {
-        int arraySize = strlen(content) + 1;
-        size = strlen(content);
-
-        if (container == nullptr)
+        for (int i = 0; i < SIZE; i++)
         {
-            container = new char[arraySize];
-
-            for (int i = 0; i < arraySize; i++)
-            {
-                container[i] = content[i];
-            }
-
-        }
-        else
-        {
-            char* newcontainer = new char[arraySize];
-            
-            for (int i = 0; i < arraySize; i++)
-            {
-                newcontainer[i] = content[i];
-            }
-            delete container;
-
-            container = newcontainer;
+            bucket[i].count = 0;
+            bucket[i].head = nullptr;
         }
 
     }
-    int& Size()
-    {
-        return size;
-    }
 
-    char& operator [] (int index)
-    {
-        return container[index];
-    }
 };
 
-
-
 int main()
-{   
-    //String string;
-    //
-    //string = "Janna";
-    //// null문자 제외한 크기
-    //cout << "string의 크기: " << string.Size() << endl;
-    //
-    //string = "Alista";
-    //
-    //for (int i = 0; i < string.Size(); i++)
-    //{
-    //    cout << string[i];
-    //}
-
-
-    String name;
-
-    name = "ab";
-
+{
 
     return 0;
 }

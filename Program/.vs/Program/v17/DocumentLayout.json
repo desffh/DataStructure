@@ -7,19 +7,22 @@
       "RelativeMoniker": "D:0:0:{51E4DFEC-B3B5-4831-8617-3CB9361951BA}|Program.vcxproj|solutionrelative:Program.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE631935-A526-40B2-9B0D-7627FFCBB936}|..\\Class7th (vector)\\Class7th (vector).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class7th (vector)\\source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A072C918-84AA-4A14-8CD3-40D76E806EEA}|..\\Class2th (Double Linked List)\\Class2th (Double Linked List).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class2th (Double Linked List)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{79B447BA-EBA1-4B85-825F-CD46967481DB}|..\\Class4th (Stack)\\Class4th (Stack).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class4th (Stack)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE631935-A526-40B2-9B0D-7627FFCBB936}|..\\Class7th (vector)\\Class7th (vector).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class7th (vector)\\source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC97C23C-7204-4C6E-B934-0BC66C5690EA}|..\\Class8th (String)\\Class8th (String).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class8th (String)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{212D0ACC-0FEB-4EA6-9C29-3F44CE63765C}|..\\Class5th (Linear Queue)\\Class5th (Linear Queue).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class5th (Linear Queue)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F6DFE464-7FEF-4AA2-8066-E495577C586E}|..\\Class6th (Circle Queue)\\Class6th (Circle Queue).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class6th (Circle Queue)\\source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A072C918-84AA-4A14-8CD3-40D76E806EEA}|..\\Class2th (Double Linked List)\\Class2th (Double Linked List).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class2th (Double Linked List)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FF08E34-DB49-4F9A-B1B1-279E192D1DDD}|..\\Class3th (Circle Linked List)\\Class3th (Circle Linked List).vcxproj|C:\\Users\\yangj\\Desktop\\DataStructure\\Class3th (Circle Linked List)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
@@ -32,7 +35,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -52,7 +55,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "Source.cpp",
+              "DocumentMoniker": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class8th (String)\\Source.cpp",
+              "RelativeDocumentMoniker": "..\\Class8th (String)\\Source.cpp",
+              "ToolTip": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class8th (String)\\Source.cpp",
+              "RelativeToolTip": "..\\Class8th (String)\\Source.cpp",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAwJQAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-21T10:03:27.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "source.cpp",
               "DocumentMoniker": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class7th (vector)\\source.cpp",
               "RelativeDocumentMoniker": "..\\Class7th (vector)\\source.cpp",
@@ -65,7 +81,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "source.cpp",
               "DocumentMoniker": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class6th (Circle Queue)\\source.cpp",
               "RelativeDocumentMoniker": "..\\Class6th (Circle Queue)\\source.cpp",
@@ -77,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class5th (Linear Queue)\\Source.cpp",
               "RelativeDocumentMoniker": "..\\Class5th (Linear Queue)\\Source.cpp",
@@ -97,11 +113,12 @@
               "RelativeToolTip": "..\\Class4th (Stack)\\Source.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAJIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-18T09:16:38.422Z"
+              "WhenOpened": "2024-06-18T09:16:38.422Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class3th (Circle Linked List)\\Source.cpp",
               "RelativeDocumentMoniker": "..\\Class3th (Circle Linked List)\\Source.cpp",
@@ -113,15 +130,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class2th (Double Linked List)\\Source.cpp",
               "RelativeDocumentMoniker": "..\\Class2th (Double Linked List)\\Source.cpp",
               "ToolTip": "C:\\Users\\yangj\\Desktop\\DataStructure\\Class2th (Double Linked List)\\Source.cpp",
               "RelativeToolTip": "..\\Class2th (Double Linked List)\\Source.cpp",
-              "ViewState": "AQIAAMkAAAAAAAAAAAAAAOUAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAOUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-06-14T09:03:22.144Z"
+              "WhenOpened": "2024-06-14T09:03:22.144Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -131,7 +149,7 @@
               "RelativeDocumentMoniker": "Program.cpp",
               "ToolTip": "C:\\Users\\yangj\\Desktop\\DataStructure\\Program\\Program.cpp",
               "RelativeToolTip": "Program.cpp",
-              "ViewState": "AQIAADsAAAAAAAAAAAAAAEsAAAAAAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-06-10T09:02:41.399Z",
               "EditorCaption": ""
