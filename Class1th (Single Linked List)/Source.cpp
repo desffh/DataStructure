@@ -9,7 +9,7 @@ private:
 	int size;
 
 	struct Node
-	{
+	{ 
 		T data;
 		Node* next;
 	};
@@ -154,12 +154,12 @@ int main()
 {
 	SingleLinkedList<int> singlelinkedlist;
 
-	//singlelinkedlist.PushFront(30);
+	//singlelinkedlist.PushFront(10); //출력값 30 20 10
 	//singlelinkedlist.PushFront(20);
-	//singlelinkedlist.PushFront(10);
+	//singlelinkedlist.PushFront(30);
 
 	//singlelinkedlist.PopFront();
-	//singlelinkedlist.PopFront();
+	 //singlelinkedlist.PopFront();
 
 	singlelinkedlist.PushBack(10);
 	singlelinkedlist.PushBack(20);
