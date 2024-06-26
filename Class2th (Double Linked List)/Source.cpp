@@ -186,7 +186,7 @@ public:
 				previousNode->next = newNode;
 				nextNode->previous = newNode;
 
-				newNode->next = nullptr;
+				//newNode->next = nullptr;
 				newNode->previous = previousNode;
 				newNode->next = nextNode;
 
@@ -216,8 +216,8 @@ int main()
 	//doubleLinkedList.PushFront(50);
 	doubleLinkedList.PopFront(); // 젤 앞에꺼 사라짐
 
-	doubleLinkedList.InSert(doubleLinkedList.Begin()->next, 99); // 젤 앞에꺼 사라짐
-
+	doubleLinkedList.InSert(doubleLinkedList.Begin()->next, 99);
+	// head 의 next 가리킴
 
 	cout << "Size: " << doubleLinkedList.Begin()->next << endl;
 
