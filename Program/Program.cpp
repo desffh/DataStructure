@@ -137,6 +137,105 @@ public:
     {
         Destroy(root);
     }
+    
+    void Remove(T data)
+    {
+
+        if (root == nullptr)
+        {
+            cout << "Binary Search Tree is Empty" << endl;
+        }
+        else
+        {
+            Node* parentNode = nullptr;
+            Node* currentNode = root;
+            
+            while (currentNode != nullptr && currentNode->data != data)
+            {
+                if (data < currentNode->data)
+                {
+                    parentNode = currentNode;
+                    currentNode = currentNode->left;
+
+                }
+                else
+                {
+                    parentNode = currentNode;
+                    currentNode = currentNode->right;
+                }
+            }
+            if (currentNode == nullptr)
+            {
+                cout << "Data Not Found in the Binary Search Tree" << endl;
+            }
+            //자식이 없을때
+            else if (currentNode->left == nullptr && currentNode->right == nullptr)
+            {
+                if (parentNode != nullptr)
+                {
+                    if (parentNode->left == currentNode)
+                    {
+                        parentNode->left = nullptr;
+                    }
+                    else
+                    {
+                        parentNode->right = nullptr;
+                    }
+                }
+                else
+                {
+                    root = nullptr;
+                }
+
+            }
+            //자식이 하나일때
+            else if (currentNode->left == nullptr || currentNode->right == nullptr)
+            {
+                Node* childNode = nullptr;
+                
+                if (currentNode->left != nullptr)
+                {
+                    childNode = currentNode->left;
+                }
+                else
+                {
+                    childNode = currentNode->right;
+                }
+
+                if (parentNode != nullptr)
+                {
+                    if (parentNode->left == currentNode)
+                    {
+                        parentNode->left = childNode;
+                    }
+                    else
+                    {
+                        parentNode->right = childNode;
+                    }
+                }
+                 
+            }
+            else
+            {
+                Node* childNode = currentNode->right;
+                Node* traceNode = childNode;
+
+                while (childNode->left != nullptr)
+                {
+                    traceNode = childNode;
+                    childNode = childNode->left;
+                }
+                currentNode->data = childNode->data;
+
+                traceNode->left = childNode->right;
+
+                delete childNode;
+
+                return;
+            }
+            delete currentNode;
+        }
+    }
 
 };
 
@@ -151,12 +250,18 @@ int main()
     binarysearchtree.Insert(7);
     binarysearchtree.Insert(15);
     binarysearchtree.Insert(5);
+    binarysearchtree.Insert(3);
 
+
+    cout << binarysearchtree.Find(5) << endl;
+    cout << binarysearchtree.Find(0) << endl;
+    
+    
+    binarysearchtree.Remove(5); // 없는값을 찾아봄
+    binarysearchtree.Remove(7); // 없는값을 찾아봄
 
     binarysearchtree.Inorder(binarysearchtree.Root());
-
-
-    cout << binarysearchtree.Find(7) << endl;
+    //cout << endl;
 
     return 0;
 }

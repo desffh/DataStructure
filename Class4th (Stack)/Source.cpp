@@ -134,9 +134,10 @@ int main()
     //stack.Push(40);
     //stack.Push(50);
     //
-    //while (stack.Empty())
+    //while (stack.Empty() == false)
     //{
     //    cout<< stack.Top() << endl;
+    //    stack.Pop();
     //}
 
     bool flag = CheckBracket("({[]})");
