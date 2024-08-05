@@ -1,3 +1,2 @@
 ﻿  Program.cpp
-C:\Users\yangj\OneDrive\바탕 화면\DataStructure\Program\Program.cpp(10,12): warning C4200: 비표준 확장이 사용됨: 구조체/공용 구조체의 배열 크기가 0입니다.
-  Program.vcxproj -> C:\Users\yangj\OneDrive\바탕 화면\DataStructure\Program\x64\Debug\Program.exe
+  Program.vcxproj -> C:\Users\유진\Desktop\DataStructure\Program\x64\Debug\Program.exe
